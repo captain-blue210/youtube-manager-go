@@ -26,6 +26,11 @@ func FetchMostPopularVideos() echo.HandlerFunc {
 			Chart("mostPopular").
 			MaxResults(3)
 
+		pageToken := c.QueryParam("pageToken")
+		if len(pageToken) > 0 {
+			call = call.PageToken(pageToken)
+		}
+
 		res, err := call.Do()
 		if err != nil {
 			logrus.Fatalf("Error calling YouTube API: %v", err)
