@@ -7,24 +7,23 @@ import (
 	"google.golang.org/api/youtube/v3"
 )
 
-func FetchMostPopularVideos() echo.HandlerFunc {
+func FetchRelatedVideos() echo.HandlerFunc {
 	return func(c echo.Context) error {
 		yts := c.Get("yts").(*youtube.Service)
 
-		call := yts.Videos.
-			List([]string{"id", "snippet"}).
-			Chart("mostPopular").
-			MaxResults(3)
+		videoId := c.Param("id")
 
-		pageToken := c.QueryParam("pageToken")
-		if len(pageToken) > 0 {
-			call = call.PageToken(pageToken)
-		}
+		call := yts.Search.
+			List([]string{"id", "snippet"}).
+			RelatedToVideoId(videoId).
+			Type("video").
+			MaxResults(3)
 
 		res, err := call.Do()
 		if err != nil {
-			logrus.Fatalf("Error calling YouTube API: %v", err)
+			logrus.Fatalf("Error calling Youtube API: %v", err)
 		}
+
 		return c.JSON(fasthttp.StatusOK, res)
 	}
 }
