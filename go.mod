@@ -3,11 +3,14 @@ module github.com/captain-blue210/youtube-sample/youtube-manager-go
 go 1.14
 
 require (
+	cloud.google.com/go/firestore v1.3.0 // indirect
+	firebase.google.com/go v3.13.0+incompatible
 	github.com/cosmtrek/air v1.21.2 // indirect
 	github.com/creack/pty v1.1.11 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible // indirect
 	github.com/fatih/color v1.9.0 // indirect
 	github.com/imdario/mergo v0.3.11 // indirect
+	github.com/jinzhu/gorm v1.9.16
 	github.com/joho/godotenv v1.3.0
 	github.com/labstack/echo v3.3.10+incompatible
 	github.com/labstack/gommon v0.3.0 // indirect
