@@ -13,6 +13,7 @@ func FetchMostPopularVideos() echo.HandlerFunc {
 
 		call := yts.Videos.
 			List([]string{"id", "snippet"}).
+			RegionCode("JP").
 			Chart("mostPopular").
 			MaxResults(3)
 
