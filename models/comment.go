@@ -2,13 +2,14 @@ package models
 
 import "time"
 
-type User struct {
+type Comment struct {
 	ID        uint       `gorm:"primary_key"`
-	UID       string     `json:"-"`
+	UserID    uint       `json:"user_id"`
+	VideoID   string     `json:"video_id"`
+	Comment   string     `json:"-"`
 	CreatedAt time.Time  `json:"-"`
 	UpdatedAt time.Time  `json:"-"`
 	DeletedAt *time.Time `sql:"index"json:"-"`
 
-	Favorites []Favorite
-	Comments  []Comment
+	User User
 }
