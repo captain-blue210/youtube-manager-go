@@ -20,4 +20,8 @@ func Init(e *echo.Echo) {
 		fg.POST("/:id/toggle", api.ToggleFavoriteVideo())
 		fg.GET("", api.FetchFavoriteVideos())
 	}
+	cg := g.Group("/comment", middlewares.FirebaseGurad())
+	{
+		cg.POST("/:id", api.CommentVideo())
+	}
 }

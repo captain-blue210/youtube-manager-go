@@ -16,4 +16,5 @@ func main() {
 
 	db.Debug().AutoMigrate(&models.User{})
 	db.Debug().AutoMigrate(&models.Favorite{})
+	db.Debug().AutoMigrate(&models.Comment{})
 }
